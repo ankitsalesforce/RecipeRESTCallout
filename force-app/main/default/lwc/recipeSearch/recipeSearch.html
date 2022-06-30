@@ -1,0 +1,49 @@
+<template>
+    <lightning-card title="Search Recipes">
+        <lightning-layout horizontal-align="space">
+            <lightning-layout-item size="8">
+              <lightning-input
+                name="enter-search"
+                type="search"
+                placeholder="Search recipe by ingredients"
+                variant="label-hidden"
+                class="ingredient-input slds-m-left_medium"
+                onkeyup={fetchIngradient}
+              ></lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="4" padding="horizontal-medium">
+              <lightning-layout horizontal-align="start">
+                <lightning-layout-item padding="horizontal-medium">
+                  <lightning-button
+                    label="Search"
+                    onclick={fetchRecipesByIngredients}
+                  ></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item>
+                  <lightning-button
+                    label="Get Random Recipe"
+                    variant="brand"
+                    onclick={fetchRandomRecipe}
+                  ></lightning-button>
+                </lightning-layout-item>
+              </lightning-layout>
+            </lightning-layout-item>
+          </lightning-layout>
+
+         
+            <template for:each={recipes} for:item="recipe">
+                <lightning-layout-item key={recipe.Id} class="slds-m-around_medium">
+                  <c-recipe recipe-id={recipe.id}
+                            image={recipe.image} 
+                            title={recipe.title} 
+                            summary={recipe.summary}
+                            price={recipe.pricePerServing} 
+                            time ={recipe.readyInMinutes}
+                            dish-type={recipe.dishTypes}
+                            diets={recipe.diets}
+                   ></c-recipe>
+                </lightning-layout-item>
+            </template>
+          
+    </lightning-card>
+</template>
